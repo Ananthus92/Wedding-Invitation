@@ -1,10 +1,10 @@
 
-import img1 from "../../assets/images/gallery/img1.JPG";
-import img2 from "../../assets/images/gallery/img2.JPG";
-import img3 from "../../assets/images/gallery/img3.JPG";
-import img4 from "../../assets/images/gallery/img4.JPG";
-import img5 from "../../assets/images/gallery/img5.JPG";
-import img6 from "../../assets/images/gallery/img6.JPG";
+import img1 from "../../assets/images/gallery/img1.jpg";
+import img2 from "../../assets/images/gallery/img2.jpg";
+import img3 from "../../assets/images/gallery/img3.jpg";
+import img4 from "../../assets/images/gallery/img4.jpg";
+import img5 from "../../assets/images/gallery/img5.jpg";
+import img6 from "../../assets/images/gallery/img6.jpg";
 
 const galleryData = [
   {
