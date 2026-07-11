@@ -89,7 +89,7 @@ function HaldiCard({ event }) {
             className="flex-shrink-0"
           />
 
-          <p className="text-center leading-7 text-base">
+          <p className="font-medium text-center leading-7 text-base">
             {event.location}
           </p>
         </div>

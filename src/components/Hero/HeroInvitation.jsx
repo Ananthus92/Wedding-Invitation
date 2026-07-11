@@ -3,7 +3,7 @@ import invite from "../../assets/images/invite.png";
 function HeroInvitation({
   bride,
   groom,
-  venue,
+  
 }) {
   return (
     <div
@@ -38,7 +38,7 @@ function HeroInvitation({
           </p>
 
           <p className="mt-5 italic text-base md:text-xl text-yellow-900 leading-7">
-            We invite you to celebrate the wedding of
+            We invite you to celebrate our wedding of
           </p>
 
           <h1
@@ -68,9 +68,7 @@ function HeroInvitation({
             {groom}
           </h1>
 
-          <p className="mt-8 text-yellow-900 text-sm md:text-base leading-6">
-            {venue}
-          </p>
+         
 
         </div>
 

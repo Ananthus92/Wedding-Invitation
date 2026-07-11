@@ -6,7 +6,7 @@ function NameReveal({
   
   bride,
   groom,
-  date,
+  // date,
   onComplete,
 }) {
 
@@ -74,7 +74,7 @@ function NameReveal({
           {groom}
         </motion.h1>
 
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
@@ -84,7 +84,7 @@ function NameReveal({
           className="mt-10 tracking-[6px] text-yellow-300"
         >
           {date}
-        </motion.p>
+        </motion.p> */}
 
       </div>
 
