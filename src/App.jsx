@@ -1,0 +1,87 @@
+import { useState } from "react";
+
+import Intro from "./components/Intro/Intro";
+import NameReveal from "./components/Intro/NameReveal";
+import Hero from "./components/Hero/Hero";
+import ScratchReveal from "./components/ScratchReveal/ScratchReveal";
+import Countdown from "./components/countdown/Countdown";
+import Events from "./components/Events/Events";
+import Gallery from "./components/Gallery/Gallery";
+import Venue from "./components/Venue/Venue";
+import Footer from "./components/Footer/Footer";
+
+import ScrollProgress from "./components/Common/ScrollProgress";
+import BackToTop from "./components/Common/BackToTop";
+
+import { weddingData } from "./data/weddingData";
+
+import bg from "./assets/images/backgrounds/main_bg.jpg";
+
+function App() {
+  const [stage, setStage] = useState("intro");
+
+  return (
+    <>
+      {stage === "intro" && (
+        <Intro
+          onStart={() => setStage("name")}
+        />
+      )}
+
+      {stage === "name" && (
+        <NameReveal
+          bride={weddingData.bride}
+          groom={weddingData.groom}
+          date={weddingData.date}
+          onComplete={() => setStage("hero")}
+        />
+      )}
+
+      {stage === "hero" && (
+        <div
+          className="relative min-h-screen"
+          style={{
+            backgroundImage: `url(${bg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "repeat-y",
+            backgroundAttachment: "fixed",
+          }}
+        >
+          {/* Dark Overlay */}
+
+          <div className="absolute inset-0 bg-black/55 z-0"></div>
+
+          {/* Website Content */}
+
+          <div className="relative z-10">
+            <Hero
+              bride={weddingData.bride}
+              groom={weddingData.groom}
+              date={weddingData.date}
+              venue={weddingData.venue}
+            />
+
+            <ScrollProgress />
+
+            <BackToTop />
+
+            <ScratchReveal />
+
+            <Countdown />
+
+            <Events />
+
+            <Gallery />
+
+            <Venue />
+
+            <Footer />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default App;

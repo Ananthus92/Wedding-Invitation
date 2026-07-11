@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montenegrin+Gothic+One&display=swap');
+@import "tailwindcss";
+
+
+/* ==========================
+   Glow Animation
+========================== */
+
+@keyframes glow {
+
+  0% {
+    opacity: 0.4;
+    transform: translateX(-50%) scaleY(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scaleY(0.8);
+  }
+
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+
+/* ==========================
+   Zoom Animation
+========================== */
+
+@keyframes zoom {
+
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.15);
+  }
+
+}
+
+
+/* ==========================
+   Gold Shimmer Animation
+========================== */
+
+@keyframes shimmer {
+
+  0% {
+    background-position: -300px 0;
+  }
+
+  100% {
+    background-position: 300px 0;
+  }
+
+}
+
+.gold-shimmer {
+
+  background: linear-gradient(
+    120deg,
+    #8b6508 0%,
+    #c9971a 20%,
+    #f7d774 40%,
+    #fff2b3 50%,
+    #f7d774 60%,
+    #c9971a 80%,
+    #8b6508 100%
+  );
+
+  background-size: 600px 100%;
+  animation: shimmer 3s linear infinite;
+
+}
+
+
+/* ==========================
+   Global Settings
+========================== */
+
+html,
+body {
+
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+}
+
+* {
+
+  box-sizing: border-box;
+
+}
+.font-montenegrin {
+  font-family: "Montenegrin Gothic One", sans-serif;
+}
