@@ -102,3 +102,27 @@ body {
 .font-montenegrin {
   font-family: "Montenegrin Gothic One", sans-serif;
 }
+/* ========= Background (All Browsers) ========= */
+
+.page-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+}
+
+/* ========= iPhone / Safari ========= */
+
+@supports (-webkit-touch-callout: none) {
+
+  .page-bg {
+
+    background-size: 200% auto;
+
+    background-position: center ;
+
+    background-attachment: fixed;
+
+  }
+
+}

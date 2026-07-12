@@ -36,33 +36,28 @@ function App() {
           groom={weddingData.groom}
           date={weddingData.date}
           onComplete={() => {
-
-    setPlayMusic(true);
-
-    setStage("hero");
-
-  }}
-/>
-     )}
+            setPlayMusic(true);
+            setStage("hero");
+          }}
+        />
+      )}
 
       {stage === "hero" && (
-        <div
-          className="relative min-h-screen"
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "repeat-y",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          {/* Dark Overlay */}
+        <>
+          {/* Fixed Background */}
+          <div className="fixed inset-0 -z-50 overflow-hidden">
+            <img
+              src={bg}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-          <div className="absolute inset-0 bg-black/55 z-0"></div>
+          {/* Dark Overlay */}
+          <div className="fixed inset-0 bg-black/55 -z-40"></div>
 
           {/* Website Content */}
-
-          <div className="relative z-10">
+          <div className="relative min-h-screen z-10">
             <MusicPlayer playMusic={playMusic} />
 
             <Hero
@@ -71,7 +66,6 @@ function App() {
               date={weddingData.date}
               venue={weddingData.venue}
             />
-   
 
             <ScrollProgress />
 
@@ -89,7 +83,7 @@ function App() {
 
             <Footer />
           </div>
-        </div>
+        </>
       )}
     </>
   );
