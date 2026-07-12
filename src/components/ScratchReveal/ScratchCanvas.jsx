@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import ScratchParticles from "./ScratchParticles";
+
 import revealSound from "../../assets/music/reveal.mp3";
+import scratchSound from "../../assets/music/scratch.mp3";
 import scratchCard from "../../assets/images/backgrounds/scratch-card.png";
 
 function ScratchCanvas({ revealed, setRevealed }) {
@@ -11,12 +13,40 @@ function ScratchCanvas({ revealed, setRevealed }) {
   const [particles, setParticles] = useState([]);
 
   const revealAudio = useRef(null);
+  const scratchAudio = useRef(null);
 
-  // Load reveal sound
+  const startScratchSound = () => {
+    if (!scratchAudio.current) return;
+
+    if (scratchAudio.current.paused) {
+      scratchAudio.current.currentTime = 0;
+      scratchAudio.current.play().catch(() => {});
+    }
+  };
+
+  const stopScratchSound = () => {
+    if (!scratchAudio.current) return;
+
+    scratchAudio.current.pause();
+    scratchAudio.current.currentTime = 0;
+  };
+
+
+  // Load sounds
   useEffect(() => {
     revealAudio.current = new Audio(revealSound);
     revealAudio.current.preload = "auto";
-    revealAudio.current.volume = 0.5;
+    revealAudio.current.volume = 0.2;
+
+    scratchAudio.current = new Audio(scratchSound);
+    scratchAudio.current.preload = "auto";
+    scratchAudio.current.volume = 0.25;
+    scratchAudio.current.loop = true;
+
+    return () => {
+      revealAudio.current?.pause();
+      scratchAudio.current?.pause();
+    };
   }, []);
 
   // Draw scratch card
@@ -36,11 +66,7 @@ function ScratchCanvas({ revealed, setRevealed }) {
     img.src = scratchCard;
 
     img.onload = () => {
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-      // ctx.strokeStyle = "#FFF3C4";
-      // ctx.lineWidth = 4;
-      // ctx.strokeRect(8, 8, canvas.width - 16, canvas.height - 16);
+      ctx.drawImage(img, 0, 0, width, height);
 
       ctx.fillStyle = "#FFFFFF";
       ctx.font = "bold 32px Georgia";
@@ -49,28 +75,30 @@ function ScratchCanvas({ revealed, setRevealed }) {
 
       ctx.fillText(
         "✨ Scratch Here ✨",
-        canvas.width / 2,
-        canvas.height / 2
+        width / 2,
+        height / 2
       );
     };
   }, []);
 
-  // Stop scratching when pointer is released
+  // Stop scratching on pointer release
   useEffect(() => {
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
       setIsScratching(false);
+      stopScratchSound();
     };
 
-    window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("touchend", handleMouseUp);
+    window.addEventListener("mouseup", handlePointerUp);
+    window.addEventListener("touchend", handlePointerUp);
 
     return () => {
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("touchend", handleMouseUp);
+      window.removeEventListener("mouseup", handlePointerUp);
+      window.removeEventListener("touchend", handlePointerUp);
     };
   }, []);
 
-  // Scratch function
+  
+  // Scratch effect
   const scratch = (x, y) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -82,10 +110,14 @@ function ScratchCanvas({ revealed, setRevealed }) {
     ctx.beginPath();
     ctx.arc(x, y, 45, 0, Math.PI * 2);
     ctx.fill();
+
+    ctx.globalCompositeOperation = "source-over";
   };
 
-  // Create sparkle particles
+  // Sparkle particles
   const createParticle = (x, y) => {
+    if (revealed) return;
+
     const id = Date.now() + Math.random();
 
     setParticles((prev) => [
@@ -102,17 +134,16 @@ function ScratchCanvas({ revealed, setRevealed }) {
     }, 800);
   };
 
-  // Auto wipe animation
+  // Auto reveal
   const autoWipe = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
 
-    if (revealAudio.current) {
-      revealAudio.current.currentTime = 0;
-      revealAudio.current.play().catch(() => {});
-    }
+    stopScratchSound();
+
+    revealAudio.current?.play().catch(() => {});
 
     let x = 0;
 
@@ -126,6 +157,8 @@ function ScratchCanvas({ revealed, setRevealed }) {
       if (x >= canvas.width) {
         clearInterval(animation);
 
+        ctx.globalCompositeOperation = "source-over";
+
         setTimeout(() => {
           setRevealed(true);
         }, 200);
@@ -133,7 +166,7 @@ function ScratchCanvas({ revealed, setRevealed }) {
     }, 16);
   };
 
-  // Check scratch progress
+  // Reveal after 70%
   const checkScratchProgress = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -157,9 +190,8 @@ function ScratchCanvas({ revealed, setRevealed }) {
       }
     }
 
-    const totalPixels = canvas.width * canvas.height;
-
-    const percentage = (transparentPixels / totalPixels) * 100;
+    const percentage =
+      (transparentPixels / (canvas.width * canvas.height)) * 100;
 
     if (percentage >= 70 && !autoWiping && !revealed) {
       setAutoWiping(true);
@@ -172,12 +204,16 @@ function ScratchCanvas({ revealed, setRevealed }) {
       {!revealed && (
         <canvas
           ref={canvasRef}
-          style={{
-            touchAction: "none",
+          style={{ touchAction: "none" }}
+          className="absolute w-full max-w-130 rounded-3xl cursor-pointer shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+          onMouseDown={() => {
+            setIsScratching(true);
+            startScratchSound();
           }}
-          className="absolute w-full max-w-[520px] rounded-3xl cursor-pointer shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
-          onMouseDown={() => setIsScratching(true)}
-          onMouseUp={() => setIsScratching(false)}
+          onMouseUp={() => {
+            setIsScratching(false);
+            stopScratchSound();
+          }}
           onMouseMove={(e) => {
             if (!isScratching || autoWiping) return;
 
@@ -193,8 +229,14 @@ function ScratchCanvas({ revealed, setRevealed }) {
             createParticle(x, y);
             checkScratchProgress();
           }}
-          onTouchStart={() => setIsScratching(true)}
-          onTouchEnd={() => setIsScratching(false)}
+          onTouchStart={() => {
+            setIsScratching(true);
+            startScratchSound();
+          }}
+          onTouchEnd={() => {
+            setIsScratching(false);
+            stopScratchSound();
+          }}
           onTouchMove={(e) => {
             e.preventDefault();
 

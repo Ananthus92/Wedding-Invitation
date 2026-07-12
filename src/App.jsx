@@ -16,9 +16,11 @@ import BackToTop from "./components/Common/BackToTop";
 import { weddingData } from "./data/weddingData";
 
 import bg from "./assets/images/backgrounds/main_bg.jpg";
+import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 
 function App() {
   const [stage, setStage] = useState("intro");
+  const [playMusic, setPlayMusic] = useState(false);
 
   return (
     <>
@@ -33,9 +35,15 @@ function App() {
           bride={weddingData.bride}
           groom={weddingData.groom}
           date={weddingData.date}
-          onComplete={() => setStage("hero")}
-        />
-      )}
+          onComplete={() => {
+
+    setPlayMusic(true);
+
+    setStage("hero");
+
+  }}
+/>
+     )}
 
       {stage === "hero" && (
         <div
@@ -55,12 +63,15 @@ function App() {
           {/* Website Content */}
 
           <div className="relative z-10">
+            <MusicPlayer playMusic={playMusic} />
+
             <Hero
               bride={weddingData.bride}
               groom={weddingData.groom}
               date={weddingData.date}
               venue={weddingData.venue}
             />
+   
 
             <ScrollProgress />
 

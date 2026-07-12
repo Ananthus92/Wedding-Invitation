@@ -1,19 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CountdownCard from "./CountdownCard";
 
 function CountdownTimer() {
-  const weddingDate = new Date("2026-09-07T11:00:00");
+  const weddingDate = new Date("2026-09-07T11:00:00").getTime();
 
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  const calculateCountdown = () => {
-    const now = new Date();
-    const difference = weddingDate - now;
+  const calculateCountdown = useCallback(() => {
+  const now = Date.now();
+  const difference = weddingDate - now;
 
     if (difference <= 0) {
       return {
@@ -46,19 +39,17 @@ function CountdownTimer() {
       minutes,
       seconds,
     };
-  };
+  }, [weddingDate]);
+
+  const [timeLeft, setTimeLeft] = useState(() => calculateCountdown());
 
   useEffect(() => {
-    // Show the correct countdown immediately
-    setTimeLeft(calculateCountdown());
-
-    // Update every second
     const timer = setInterval(() => {
       setTimeLeft(calculateCountdown());
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [calculateCountdown]);
 
   return (
     <div className="font-mono grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16">

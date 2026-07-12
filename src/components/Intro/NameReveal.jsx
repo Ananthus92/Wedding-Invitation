@@ -28,8 +28,8 @@ function NameReveal({
       <div
         className="
         absolute
-        w-[500px]
-        h-[500px]
+        w-125
+        h-125
         rounded-full
         bg-yellow-500/10
         blur-3xl

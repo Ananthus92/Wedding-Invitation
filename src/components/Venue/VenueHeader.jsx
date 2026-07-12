@@ -29,7 +29,7 @@ function VenueHeader() {
         </h2>
 
         <div className="flex justify-center mt-6">
-          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+          <div className="w-24 h-0.5 bg-linear-to-r from-transparent via-yellow-500 to-transparent"></div>
         </div>
 
         <p

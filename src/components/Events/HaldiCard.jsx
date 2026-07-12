@@ -69,7 +69,7 @@ function HaldiCard({ event }) {
 </h3>
 
         {/* Divider */}
-        <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+        <div className="w-20 h-0.5 bg-linear-to-r from-transparent via-yellow-500 to-transparent"></div>
 
         {/* Time */}
         <div className="flex items-center justify-center gap-2 text-[#4d0752]">
@@ -80,13 +80,13 @@ function HaldiCard({ event }) {
         </div>
 
         {/* Divider */}
-        <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+        <div className="w-20 h-0.5 bg-linear-to-r from-transparent via-yellow-500 to-transparent"></div>
 
         {/* Location */}
         <div className="flex items-center justify-center gap-2 text-[#4d0752] font-bold">
           <MapPin
             size={18}
-            className="flex-shrink-0"
+            className="shrink-0"
           />
 
           <p className="font-medium text-center leading-7 text-base">
@@ -95,13 +95,13 @@ function HaldiCard({ event }) {
         </div>
 
         {/* Divider */}
-        <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+        <div className="w-20 h-0.5 bg-linear-to-r from-transparent via-yellow-500 to-transparent"></div>
 
         {/* Meal */}
         <div className="flex items-center justify-center gap-2 text-[#4d0752]">
           <UtensilsCrossed
             size={18}
-            className="flex-shrink-0"
+            className="shrink-0"
           />
 
           <p

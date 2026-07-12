@@ -20,8 +20,8 @@ function ScratchContent({ revealed }) {
 
     className="
 relative
-w-[520px]
-h-[220px]
+w-130
+h-55
 rounded-3xl
 bg-[#f7efe2]
 shadow-2xl

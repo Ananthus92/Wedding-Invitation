@@ -22,10 +22,10 @@ function Hero({
             className="
             relative
             w-full
-            h-[260px]
-            sm:h-[380px]
-            md:h-[500px]
-            lg:h-[720px]
+            h-65
+            sm:h-95
+            md:h-125
+            lg:h-180
             rounded-[35px]
             overflow-hidden
             "
@@ -50,7 +50,7 @@ function Hero({
             lg:absolute
             lg:right-10
             lg:bottom-10
-            lg:w-[420px]
+            lg:w-105
             z-20
             "
           >

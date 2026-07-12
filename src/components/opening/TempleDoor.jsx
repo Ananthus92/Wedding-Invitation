@@ -84,7 +84,7 @@ w-4
 
 h-full
 
-bg-gradient-to-b
+bg-linear-to-b
 
 from-yellow-100
 

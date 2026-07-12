@@ -11,10 +11,10 @@ function Intro({ onStart }) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-[#0f0b08] cursor-pointer overflow-hidden"
     >
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a130d] via-[#0f0b08] to-black"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-[#1a130d] via-[#0f0b08] to-black"></div>
 
       {/* Decorative Blur */}
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-yellow-500/10 blur-3xl"></div>
+      <div className="absolute w-125 h-125 rounded-full bg-yellow-500/10 blur-3xl"></div>
 
       {/* Content */}
       <div className="relative z-10 text-center px-6">

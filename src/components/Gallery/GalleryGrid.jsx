@@ -14,7 +14,7 @@ function GalleryGrid({
 
         <div className="space-y-6">
 
-          <div className="h-[520px]">
+          <div className="h-130">
             <GalleryItem
               photo={photos[0]}
               index={0}
@@ -22,7 +22,7 @@ function GalleryGrid({
             />
           </div>
 
-          <div className="h-[240px]">
+          <div className="h-60">
             <GalleryItem
               photo={photos[3]}
               index={3}
@@ -36,7 +36,7 @@ function GalleryGrid({
 
         <div className="space-y-6">
 
-          <div className="h-[240px]">
+          <div className="h-60">
             <GalleryItem
               photo={photos[1]}
               index={1}
@@ -44,7 +44,7 @@ function GalleryGrid({
             />
           </div>
 
-          <div className="h-[520px]">
+          <div className="h-130">
             <GalleryItem
               photo={photos[4]}
               index={4}
@@ -58,7 +58,7 @@ function GalleryGrid({
 
         <div className="space-y-6">
 
-          <div className="h-[520px]">
+          <div className="h-130">
             <GalleryItem
               photo={photos[2]}
               index={2}
@@ -66,7 +66,7 @@ function GalleryGrid({
             />
           </div>
 
-          <div className="h-[240px]">
+          <div className="h-130">
             <GalleryItem
               photo={photos[5]}
               index={5}
@@ -84,7 +84,7 @@ function GalleryGrid({
 
         {/* Hero Photo */}
 
-        <div className="h-[280px]">
+        <div className="h-70">
           <GalleryItem
             photo={photos[0]}
             index={0}
@@ -96,7 +96,7 @@ function GalleryGrid({
 
         <div className="grid grid-cols-2 gap-4">
 
-          <div className="h-[180px]">
+          <div className="h-45">
             <GalleryItem
               photo={photos[1]}
               index={1}
@@ -104,7 +104,7 @@ function GalleryGrid({
             />
           </div>
 
-          <div className="h-[180px]">
+          <div className="h-45">
             <GalleryItem
               photo={photos[2]}
               index={2}
@@ -118,7 +118,7 @@ function GalleryGrid({
 
         <div className="grid grid-cols-2 gap-4">
 
-          <div className="h-[180px]">
+          <div className="h-45">
             <GalleryItem
               photo={photos[3]}
               index={3}
@@ -126,7 +126,7 @@ function GalleryGrid({
             />
           </div>
 
-          <div className="h-[180px]">
+          <div className="h-45">
             <GalleryItem
               photo={photos[4]}
               index={4}
@@ -138,7 +138,7 @@ function GalleryGrid({
 
         {/* Closing Photo */}
 
-        <div className="h-[250px]">
+        <div className="h-62.5">
           <GalleryItem
             photo={photos[5]}
             index={5}
