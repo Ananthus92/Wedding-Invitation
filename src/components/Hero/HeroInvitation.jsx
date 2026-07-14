@@ -38,7 +38,7 @@ function HeroInvitation({
           </p>
 
           <p className="mt-5 italic text-base md:text-xl text-yellow-900 leading-7">
-            We invite you to celebrate our wedding of
+            We invite you to celebrate our wedding 
           </p>
 
           <h1

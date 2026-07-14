@@ -55,7 +55,7 @@ select-none
 
         <h2
           className="
-          mt-4
+          mt-3
           text-6xl
 font-light
 tracking-wide
@@ -65,9 +65,9 @@ tracking-wide
           07 September 2026
         </h2>
 
-        <p className="mt-5 text-xl">
+        <p className="mt-2 text-xl">
 
-          Muhurtham · 11:00 AM
+          Muhurtham · 10:30-11:00 AM
 
         </p>
 
