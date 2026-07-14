@@ -6,7 +6,8 @@ function VenueHeader() {
       <div className="text-center mb-20">
 
         <p
-          className="
+          className=" font-merienda 
+          font-bold
           uppercase
           tracking-[8px]
           text-yellow-500
@@ -17,8 +18,9 @@ function VenueHeader() {
         </p>
 
         <h2
-          className="
+          className="eagle-lake-regular
           mt-5
+          uppercase
           text-5xl
           md:text-6xl
           italic
@@ -34,12 +36,14 @@ function VenueHeader() {
 
         <p
           className="
+          font-Tangerine text-3xl
           mt-6
           text-yellow-400
           max-w-2xl
           mx-auto
           leading-8
-          text-lg
+          
+          
           "
         >
           Join us as we celebrate these beautiful moments and

@@ -9,15 +9,15 @@ function EventHeader() {
       viewport={{ once: true }}
       className="text-center mb-20"
     >
-      <p className="uppercase tracking-[8px] text-yellow-600 text-sm">
+      <p className="font-bold font-merienda  uppercase tracking-[8px] text-yellow-600 text-sm">
         Wedding Celebrations
       </p>
 
-      <h2 className="mt-4 text-5xl md:text-6xl text-yellow-100">
+      <h2 className="eagle-lake-regular mt-8 text-3xl uppercase md:text-6xl text-yellow-100">
         Join Our Beautiful Moments
       </h2>
 
-      <p className="mt-6 text-yellow-400 max-w-2xl mx-auto">
+      <p className="font-Tangerine text-3xl mt-10 text-yellow-400 max-w-4xl mx-auto">
         Every celebration marks a beautiful chapter in our journey.
         We warmly invite you to be part of these unforgettable moments.
       </p>

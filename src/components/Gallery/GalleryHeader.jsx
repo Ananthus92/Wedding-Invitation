@@ -9,15 +9,15 @@ function GalleryHeader() {
       viewport={{ once: true }}
       className="text-center mb-20"
     >
-      <p className="uppercase tracking-[8px] text-yellow-600 text-sm">
+      <p className="font-merienda font-bold uppercase tracking-[8px] text-yellow-600 text-sm">
         Our Gallery
       </p>
 
-      <h2 className="mt-4 text-5xl md:text-6xl text-yellow-100">
+      <h2 className="eagle-lake-regular uppercase mt-5 text-5xl md:text-6xl text-yellow-100">
         Captured Moments
       </h2>
 
-      <p className="mt-6 max-w-2xl mx-auto text-yellow-400">
+      <p className="font-Tangerine text-3xl mt-6 max-w-2xl mx-auto text-yellow-400">
         Every picture tells a story of love, laughter and
         unforgettable memories.
       </p>

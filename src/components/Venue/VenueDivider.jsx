@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 
+import thaali from "../../assets/icons/thaali.png";
+
 function VenueDivider() {
   return (
     <motion.div
@@ -12,22 +14,26 @@ function VenueDivider() {
       <div className="w-24 h-[2px] bg-gradient-to-r from-transparent to-yellow-500" />
 
       <div
-        className="
-          mx-6
-          w-14
-          h-14
-          rounded-full
-          border
-          border-yellow-500
-          flex
-          items-center
-          justify-center
-          text-2xl
-          bg-[#111111]
-        "
-      >
-        💍
-      </div>
+  className="
+    mx-6
+    w-16
+    h-16
+    rounded-full
+    border
+    border-yellow-500/50
+    bg-[#111111]
+    flex
+    items-center
+    justify-center
+    shadow-lg
+  "
+>
+  <img
+    src={thaali}
+    alt="Kerala Wedding Thaali"
+    className="w-10 h-10 object-contain"
+  />
+</div>
 
       <div className="w-24 h-[2px] bg-gradient-to-l from-transparent to-yellow-500" />
     </motion.div>

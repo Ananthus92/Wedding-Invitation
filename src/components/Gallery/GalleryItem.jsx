@@ -50,7 +50,7 @@ shadow-2xl
   className="
   absolute
   inset-0
-  bg-gradient-to-t
+  bg-linear-to-t
   from-black/50
   via-transparent
   to-transparent

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import GalleryHeader from "./GalleryHeader";
 import GalleryGrid from "./GalleryGrid";
@@ -8,6 +8,17 @@ import galleryData from "./galleryData";
 
 function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState(null);
+
+  useEffect(() => {
+    galleryData.forEach((photo) => {
+      const img = new Image();
+      img.src = photo.image;
+
+      if (img.decode) {
+        img.decode().catch(() => {});
+      }
+    });
+  }, []);
 
   // Open selected image
   const openLightbox = (index) => {

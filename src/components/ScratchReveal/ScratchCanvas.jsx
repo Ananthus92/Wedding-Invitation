@@ -74,7 +74,7 @@ function ScratchCanvas({ revealed, setRevealed }) {
       ctx.textBaseline = "middle";
 
       ctx.fillText(
-        "✨ Scratch Here ✨",
+        " ✨ Scratch Here ✨",
         width / 2,
         height / 2
       );

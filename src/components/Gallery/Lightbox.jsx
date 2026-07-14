@@ -8,24 +8,30 @@ function Lightbox({
   onPrevious,
   onNext,
 }) {
-  // Hooks MUST always be at the top
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const scrollPosition = useRef(0);
 
+  // Keyboard Navigation
   useEffect(() => {
     if (selectedIndex === null) return;
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
+      switch (event.key) {
+        case "Escape":
+          onClose();
+          break;
 
-      if (event.key === "ArrowLeft") {
-        onPrevious();
-      }
+        case "ArrowLeft":
+          onPrevious();
+          break;
 
-      if (event.key === "ArrowRight") {
-        onNext();
+        case "ArrowRight":
+          onNext();
+          break;
+
+        default:
+          break;
       }
     };
 
@@ -36,10 +42,44 @@ function Lightbox({
     };
   }, [selectedIndex, onClose, onPrevious, onNext]);
 
+  // Lock Background Scroll
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    scrollPosition.current = window.scrollY;
+
+    document.body.style.position = "fixed";
+document.body.style.top = `-${scrollPosition.current}px`;
+document.body.style.left = "0";
+document.body.style.right = "0";
+document.body.style.width = "100%";
+document.body.style.overflow = "hidden";
+
+    return () => {
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  document.body.style.overflow = "";
+
+  window.scrollTo(0, scrollPosition.current);
+};
+    
+  }, [selectedIndex !== null]);
+
+  // Swipe Navigation
   const handleSwipe = () => {
+    if (touchEndX.current === 0) {
+      touchStartX.current = 0;
+      return;
+    }
+
     const distance = touchStartX.current - touchEndX.current;
 
     if (Math.abs(distance) < 70) {
+      touchStartX.current = 0;
+      touchEndX.current = 0;
       return;
     }
 
@@ -53,7 +93,6 @@ function Lightbox({
     touchEndX.current = 0;
   };
 
-  // AFTER all hooks
   if (selectedIndex === null) return null;
 
   const photo = photos[selectedIndex];
@@ -61,15 +100,17 @@ function Lightbox({
   return (
     <AnimatePresence>
       <motion.div
+        key={photo.id}
+         src={photo.image}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        transition={{ duration: 0 }}
         className="
           fixed
           inset-0
           z-50
-          bg-black/90
-          backdrop-blur-md
+          bg-black/95
           flex
           items-center
           justify-center
@@ -78,27 +119,12 @@ function Lightbox({
         onClick={onClose}
       >
         <motion.div
-          initial={{
-            scale: 0.8,
-            opacity: 0,
-          }}
-          animate={{
-            scale: 1,
-            opacity: 1,
-          }}
-          exit={{
-            scale: 0.8,
-            opacity: 0,
-          }}
-          transition={{
-            duration: 0.35,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
           onClick={(e) => e.stopPropagation()}
-          className="
-            relative
-            max-w-5xl
-            w-full
-          "
+          className="relative w-full max-w-5xl"
           onTouchStart={(e) => {
             touchStartX.current = e.touches[0].clientX;
           }}
@@ -107,31 +133,48 @@ function Lightbox({
           }}
           onTouchEnd={handleSwipe}
         >
+          {/* Close Button */}
+
           <button
             onClick={onClose}
             className="
-              absolute
-              -top-14
-              right-0
+              fixed
+              top-6
+              right-6
+              z-[100]
+              w-12
+              h-12
+              rounded-full
+              bg-black/60
               text-white
-              text-4xl
-              hover:text-red-400
-              transition
+              text-3xl
+              flex
+              items-center
+              justify-center
             "
           >
             ✕
           </button>
 
+          {/* Image */}
+
           <img
+            key={photo.id}
             src={photo.image}
             alt={photo.title}
+            loading="eager"
+            decoding="async"
+            draggable={false}
             className="
-              rounded-3xl
-              max-h-[85vh]
               w-full
+              max-h-[75vh]
+              rounded-3xl
               object-contain
+              select-none
             "
           />
+
+          {/* Previous */}
 
           <button
             onClick={onPrevious}
@@ -143,16 +186,16 @@ function Lightbox({
               w-14
               h-14
               rounded-full
-              bg-white/20
-              backdrop-blur-md
+              bg-black/50
               text-white
               text-4xl
-              hover:bg-white/40
               transition
             "
           >
             ❮
           </button>
+
+          {/* Next */}
 
           <button
             onClick={onNext}
@@ -164,35 +207,20 @@ function Lightbox({
               w-14
               h-14
               rounded-full
-              bg-white/20
-              backdrop-blur-md
+              bg-black/50
               text-white
               text-4xl
-              hover:bg-white/40
               transition
             "
           >
             ❯
           </button>
 
-          <h3
-            className="
-              mt-6
-              text-center
-              text-2xl
-              text-yellow-100
-            "
-          >
+          <h3 className="mt-6 text-center text-2xl text-yellow-100">
             {photo.title}
           </h3>
 
-          <p
-            className="
-              mt-3
-              text-center
-              text-yellow-500
-            "
-          >
+          <p className="mt-3 text-center text-yellow-500">
             {selectedIndex + 1} / {photos.length}
           </p>
         </motion.div>
